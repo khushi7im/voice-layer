@@ -1,0 +1,8 @@
+CREATE TABLE sessions (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    session_id VARCHAR(100)  NULL,
+    device_id VARCHAR(100)  NULL,
+    description VARCHAR(255),
+    status VARCHAR(20) DEFAULT 'ACTIVE',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

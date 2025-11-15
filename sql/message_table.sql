@@ -1,0 +1,10 @@
+CREATE TABLE message (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    device_id VARCHAR(100) NULL,
+    session_id VARCHAR(100) NULL,
+    message_id VARCHAR(100) NULL,
+    role VARCHAR(100) NULL,
+    message TEXT NULL,
+    status VARCHAR(20) DEFAULT 'ACTIVE',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

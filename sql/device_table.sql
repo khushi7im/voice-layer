@@ -1,0 +1,7 @@
+CREATE TABLE device (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    device_id VARCHAR(100)  NULL,
+    about TEXT NULL,
+    status VARCHAR(20) DEFAULT 'ACTIVE',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
