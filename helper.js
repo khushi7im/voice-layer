@@ -3,6 +3,7 @@ const fs = require("fs");
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 require("dotenv").config();
 const geminiKey = process.env.GEMINI_API_KEY;
+const { promptHindi, promptEnglish, promptPunjabi } = require("./prompt.js");
 
 let db; // global reusable connection
 
@@ -27,9 +28,16 @@ const model = genAI.getGenerativeModel({
   model: "gemini-2.0-flash",
   responseMimeType: "application/json",
 });
-async function getAiReply(userMessage, session_id) {
+async function getAiReply(userMessage, session_id, language) {
   let db = getDB();
-  const systemPrompt = fs.readFileSync("./prompt.txt", "utf-8");
+  let systemPrompt;
+  if (language == "HINDI") {
+    systemPrompt = promptHindi;
+  } else if (language == "ENGLISH") {
+    systemPrompt = promptEnglish;
+  } else if (language == "PUNJABI") {
+    systemPrompt = promptPunjabi;
+  }
 
   let chat;
   let descPrompt;

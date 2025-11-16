@@ -38,13 +38,13 @@ exports.insertSession = async (req, res) => {
 };
 
 exports.sendMessage = async (req, res) => {
-  let { session_id, message_id, message, device_id } = req.body;
+  let { session_id, message_id, message, device_id, language } = req.body;
   let db = getDB();
   message_id = v4();
   try {
     const sql = `INSERT INTO message (session_id, message_id, message, device_id,role) VALUES (?, ?, ?, ?, 'user')`;
     const values = [session_id, message_id, message, device_id];
-    let response = await getAiReply(message, session_id);
+    let response = await getAiReply(message, session_id, language);
     await db.query(sql, values);
     await db.query(
       `INSERT INTO message (session_id, message_id, message, device_id, role) VALUES (?, ?, ?, ?, 'model')`,
